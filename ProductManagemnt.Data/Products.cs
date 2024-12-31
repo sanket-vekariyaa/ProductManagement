@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace ProductManagemnt.Data
+namespace ProductManagemnt.Model
 {
-    public class Product : AuditableEntity
+    public class Product : TransectionKeys
     {
         [Key]public int ProductId { get; set; }
         public string Title { get; set; }

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace ProductManagemnt.Data
+namespace ProductManagemnt.Model
 {
     public class ProductImage
     {

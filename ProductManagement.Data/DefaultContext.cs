@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProductManagement.Providers;
-using ProductManagemnt.Data;
+using ProductManagemnt.Model;
 
 namespace ProductManagement.Data
 {

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ProductManagemnt.Data
+namespace ProductManagemnt.Model
 {
-    public class Category : AuditableEntity
+    public class Category : TransectionKeys
     {
         [Key]public int CategoryId { get; set; }
         public string Name { get; set; }
