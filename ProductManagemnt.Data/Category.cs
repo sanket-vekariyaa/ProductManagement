@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ProductManagemnt.Model
+namespace ProductManagement.Model
 {
     public class Category : TransectionKeys
     {
-        [Key]public int CategoryId { get; set; }
-        public string Name { get; set; }
+        [Required][MaxLength(100)] public string Name { get; set; }
+        public ICollection<Products> Products { get; set; }
+
     }
 }

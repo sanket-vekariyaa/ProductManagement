@@ -5,7 +5,7 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement", "ProductManagement\ProductManagement.csproj", "{0B90B32D-5B94-4709-83E3-56E5F8F50AD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagemnt.Model", "ProductManagemnt.Data\ProductManagemnt.Model.csproj", "{00054869-3228-4529-88E9-C3A36A02EA31}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.Model", "ProductManagemnt.Data\ProductManagement.Model.csproj", "{00054869-3228-4529-88E9-C3A36A02EA31}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.Business", "ProductManagement.Business\ProductManagement.Business.csproj", "{4A9FB449-F4E5-4AF0-A28D-3BE7980E3611}"
 EndProject

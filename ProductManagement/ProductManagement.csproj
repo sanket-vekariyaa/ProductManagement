@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -23,7 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ProductManagement.Business\ProductManagement.Business.csproj" />
     <ProjectReference Include="..\ProductManagement.Providers\ProductManagement.Providers.csproj" />
-    <ProjectReference Include="..\ProductManagemnt.Data\ProductManagemnt.Model.csproj" />
+    <ProjectReference Include="..\ProductManagemnt.Data\ProductManagement.Model.csproj" />
   </ItemGroup>
 
 </Project>

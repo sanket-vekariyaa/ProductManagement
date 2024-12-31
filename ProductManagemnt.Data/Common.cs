@@ -1,7 +1,9 @@
 ﻿
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ProductManagemnt.Model
+namespace ProductManagement.Model
 {
     public struct Response
     {

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,7 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ProductManagement.Data\ProductManagement.Data.csproj" />
     <ProjectReference Include="..\ProductManagement.Providers\ProductManagement.Providers.csproj" />
-    <ProjectReference Include="..\ProductManagemnt.Data\ProductManagemnt.Model.csproj" />
+    <ProjectReference Include="..\ProductManagemnt.Data\ProductManagement.Model.csproj" />
   </ItemGroup>
 
 </Project>

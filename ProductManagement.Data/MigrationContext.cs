@@ -13,3 +13,5 @@ namespace ProductManagement.Data
         }
     }
 }
+// Add-Migration FirstMigration -Context PostgresContext -o Migrations\SqlServer
+// update-database -Context PostgresContext

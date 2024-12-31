@@ -1,4 +1,4 @@
-﻿namespace ProductManagement.Components.Crud
+﻿namespace ProductManagement.Components.Product
 {
     public partial class Index
     {

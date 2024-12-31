@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Components;
-using ProductManagemnt.Model;
+using ProductManagement.Model;
 
 namespace ProductManagement.Components.Auth
 {
