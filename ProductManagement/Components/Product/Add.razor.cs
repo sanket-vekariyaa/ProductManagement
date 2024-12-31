@@ -10,7 +10,7 @@ namespace ProductManagement.Components.Product
         private List<Category> categories = new List<Category>();
 
         [Inject]
-        public ProductService Product { get; set; }
+        public ProductService ProductService { get; set; }
 
         [Inject]
         private NavigationManager NavigationManager { get; set; }
@@ -27,7 +27,7 @@ namespace ProductManagement.Components.Product
             await ProductService.CreateProductAsync(newProduct);
 
             // Navigate back to the product list page
-            Navigation.NavigateTo("/products");
+            NavigationManager.NavigateTo("/products");
         }
     }
 }

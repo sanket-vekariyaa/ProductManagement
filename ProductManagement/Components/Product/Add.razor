@@ -1,8 +1,7 @@
 ﻿@page "/add-product"
 @using ProductManagement.Business
-@inject ProductService ProductService
-@inject NavigationManager Navigation
-
+@using ProductManagement.Model
+<link rel="stylesheet" href="css/addProduct.css">
 <h3>Add New Product</h3>
 
 <EditForm Model="@newProduct" OnValidSubmit="HandleValidSubmit" FormName="Add">
