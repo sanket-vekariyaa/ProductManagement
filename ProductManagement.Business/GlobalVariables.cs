@@ -1,13 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProductManagement.Data;
+using ProductManagement.Model;
 using ProductManagement.Provider;
 using ProductManagement.Providers;
-using ProductManagement.Model;
 using System.Reflection;
-using System.Threading.Tasks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ProductManagement.Buisness
 {
@@ -15,7 +11,7 @@ namespace ProductManagement.Buisness
     {
         //public User CurrentUser { get; set; }
         public void Dispose() { GC.SuppressFinalize(this); }
-       
+
         //internal T UpdateTransection<T>(T data)
         //{
         //    if (CurrentUser != null && CurrentUser.Id != 0)

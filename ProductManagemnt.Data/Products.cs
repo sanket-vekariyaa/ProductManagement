@@ -5,7 +5,7 @@ namespace ProductManagement.Model
 {
     public class Products : TransectionKeys
     {
-        public string Name { get; set; }
+        [Required][MaxLength(100)] public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
         public int CategoryId { get; set; }
@@ -15,5 +15,6 @@ namespace ProductManagement.Model
         public string ProductCode { get; set; }
         public bool IsActive { get; set; }
         public ICollection<ProductImage> ProductImages { get; set; }
+        [NotMapped] public List<Category> CategoryList { get; set; } = new List<Category>();
     }
 }

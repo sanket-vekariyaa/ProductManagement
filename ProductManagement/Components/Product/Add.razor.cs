@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Components;
 using ProductManagement.Business;
 using ProductManagement.Model;
+using ProductManagement.Provider;
 
 namespace ProductManagement.Components.Product
 {
     public partial class Add : ComponentBase
     {
         private Products newProduct = new Products();
-        private List<Category> categories = new List<Category>();
 
         [Inject]
         public ProductService ProductService { get; set; }
@@ -17,17 +17,25 @@ namespace ProductManagement.Components.Product
 
         protected override async Task OnInitializedAsync()
         {
-            // Load product categories for the dropdown list
-            categories = await ProductService.GetProductCategoriesAsync();
+            var response = await ProductService.Get<Category>(0);
+            newProduct.CategoryList = TypeHelper.SafeCastToList<Category>(response.Data);
+            //if(!newProduct.CategoryList.Any()) // we will move this code into seed method
+            //{
+            //    newProduct.CategoryList = await ProductService.SaveProductCategories();
+            //}
         }
 
         private async Task HandleValidSubmit()
         {
-            // Call service to create product
-            await ProductService.CreateProductAsync(newProduct);
-
-            // Navigate back to the product list page
-            NavigationManager.NavigateTo("/products");
+            var response = await ProductService.Save(newProduct);
+            if (response.Status == (byte)StatusFlags.Success)
+            {
+                NavigationManager.NavigateTo("/index");
+            }
+            else
+            {
+                Console.WriteLine($"Error: {response.Message}");
+            }
         }
     }
 }

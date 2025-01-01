@@ -27,7 +27,7 @@
         <label for="category">Category</label>
         <InputSelect id="category" class="form-control" @bind-Value="newProduct.CategoryId">
             <option value="">Select Category</option>
-            @foreach (var category in categories)
+            @foreach (var category in newProduct.CategoryList)
             {
                 <option value="@category.Id">@category.Name</option>
             }

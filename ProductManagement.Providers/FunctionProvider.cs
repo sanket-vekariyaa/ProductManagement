@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 
 namespace ProductManagement.Provider
 {
@@ -44,6 +39,20 @@ namespace ProductManagement.Provider
                 typedValue = valueType.IsEnum ? Enum.Parse(valueType, value) : valueType == typeof(Guid) ? Guid.Parse(value) : Convert.ChangeType(value, valueType);
             }
             return key.Type != typeof(string) ? Expression.MakeBinary(ExpressionType.Equal, key, Expression.Constant(typedValue, key.Type)) : Expression.Call(key, "Contains", Type.EmptyTypes, Expression.Constant(value, typeof(string)));
+        }
+    }
+    public static class FunctionProvider
+    {
+        public static object GetPropertyValue<T>(this T data, string propertyName) => data.GetType().GetProperty(propertyName).GetValue(data, null);
+        public static object SetPropertyValue<T>(this T data, string propertyName, object value) { data.GetType().GetProperty(propertyName).SetValue(data, value, null); return data; }
+    }
+    public static class TypeHelper
+    {
+        public static List<T> SafeCastToList<T>(object data)
+        {
+            if (data == null) return new List<T>();
+            if (data is List<T> list) return list;
+            return new List<T>();
         }
     }
 }

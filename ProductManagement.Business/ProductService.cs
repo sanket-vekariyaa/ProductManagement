@@ -1,55 +1,50 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductManagement.Buisness;
 using ProductManagement.Data;
-using ProductManagement.Providers;
 using ProductManagement.Model;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using ProductManagement.Providers;
 
 namespace ProductManagement.Business
 {
-    public class ProductService
+    public class ProductService : GlobalVariables
     {
         DefaultContext _context = new DefaultContext(new Connection());
-
-        // Create
-        public async Task CreateProductAsync(Products product)
+        public async Task<Response> Save(Products data)
         {
-            _context.Product.Add(product);
-            await _context.SaveChangesAsync();
-        }
-
-        // Read
-        public async Task<List<Products>> GetProductsAsync()
-        {
-            return await _context.Product.Include(p => p.Category).ToListAsync();
-        }
-        public async Task<List<Category>> GetProductCategoriesAsync()
-        {
-            return await _context.Category.ToListAsync();
-        }
-
-        public async Task<Products> GetProductByIdAsync(int id)
-        {
-            return await _context.Product.Include(p => p.Category)
-                .FirstOrDefaultAsync(p => p.Id == id) ?? new Products();
-        }
-
-        // Update
-        public async Task UpdateProductAsync(Products product)
-        {
-            _context.Product.Update(product);
-            await _context.SaveChangesAsync();
-        }
-
-        // Delete
-        public async Task DeleteProductAsync(int id)
-        {
-            var product = await _context.Product.FindAsync(id);
-            if (product != null)
+            Response response = new() { Status = (byte)StatusFlags.Success };
+            try
             {
-                _context.Product.Remove(product);
+                if (data.Id == 0 && !await _context.Product.AsNoTracking().AnyAsync(d => d.ProductCode == data.ProductCode)) { await _context.Product.AddAsync(data); }
+                else if (data.Id != 0 && !await _context.Product.AsNoTracking().AnyAsync(d => d.ProductCode == data.ProductCode && d.Id != data.Id)) { _context.Product.Update(data); }
+                else { response.Status = (byte)StatusFlags.AlreadyExists; }
                 await _context.SaveChangesAsync();
             }
+            catch (Exception ex) {response.Status = (byte)StatusFlags.Failed; response.DetailedError = Convert.ToString(ex); }
+            return response;
+        }
+
+        public async Task<Response> Delete(int id)
+        {
+            Response response = new() { Status = (byte)StatusFlags.Success };
+            try
+            {
+                Products data = await _context.Product.AsNoTracking().FirstAsync(d => d.Id == id);
+                if (data != null) { _context.Product.Remove(data); await _context.SaveChangesAsync(); }
+                else { response.Status = (byte)StatusFlags.Failed; }
+            }
+            catch (Exception ex) { response.Status = (byte)StatusFlags.Failed; response.DetailedError = Convert.ToString(ex); }
+            return response;
+        }
+
+        public async Task<List<Category>> SaveProductCategories()
+        {
+            if(!_context.Category.Any()) // we will move this code into seed method
+            {
+                _context.Category.Add(new Category { Name = "Mens's Fashion"});
+                _context.Category.Add(new Category { Name = "Women's Fashion"});
+                await _context.SaveChangesAsync();
+            }
+            return await _context.Category.ToListAsync();
         }
     }
 
